@@ -1,5 +1,3 @@
-// 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
-
 const { Configuration, OpenAIApi } = require("openai");
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -7,7 +5,7 @@ const cors = require('cors')
 
 const configuration = new Configuration({
     organization: "org-6ZFQ3THbfBvZay2O1lt27syk",
-    apiKey: "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",
+    apiKey: // your_API_key,
 });
 const openai = new OpenAIApi(configuration);
 
