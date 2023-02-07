@@ -1,36 +1,48 @@
 import './App.css';
 import './normal.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
+
+  useEffect(() => {getEngines();}, [])
 
   const [input, setInput] = useState("");
   const [chatLog, setChatLog] = useState([{
     user: "gpt",
     message: "How can I help you today?"
-  },{
-    user: "me",
-    message: "I want to use ChatGPT today"
   }]);
+
+  function clearChat(){
+    setChatLog([]);
+  }
+
+  function getEngines(){
+    fetch("http://localhost:3080/models")
+    .then(res => res.json())
+    .then(data => {
+      console.log(data.models.data)
+      })
+  }
 
 
   async function handleSubmit(e){
     e.preventDefault();
-    console.log('submit')
-    setChatLog([...chatLog, {user: "me", message: `${input}`}])
+    let chatLogNew = [...chatLog, {user: "me", message: `${input}`}]
     setInput("");
+    setChatLog(chatLogNew)
 
+    const messages = chatLogNew.map((message) => message.message).join("\n")
     const response = await fetch("http://localhost:3080", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        message: chatLog.map((message) => message.message).join("")
+        message: messages,
       })
     });
     const data = await response.json();
-    setChatLog([...chatLog, {user: "gpt", message: `${data.message}`}])
+    setChatLog([...chatLogNew, {user: "gpt", message: `${data.message}`}])
     console.log(data.message);
   }
 
@@ -38,7 +50,7 @@ function App() {
   return (
     <div className="App">
     <aside className="sidemenu">
-      <div className="side-menu-button">
+      <div className="side-menu-button" onClick={clearChat}>
         <span>+</span>
         New Chat
       </div>
