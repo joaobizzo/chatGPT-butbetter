@@ -19,18 +19,19 @@ What things you need to install the software and how to install them:
 A step by step series of examples that tell you how to get a development environment running:
 
 Clone the repository:
-
-git clone https://github.com/YOUR-USERNAME/ChatGPT-Clone.git
+<pre><code> git clone https://github.com/joaobizzo/chatGPT-butbetter.git </code></pre>
 
 Install the dependencies:
-
-cd ChatGPT-Clone
+<pre><code>
+cd chatGPT-butbetter
 npm install
-
+npm install openai
+</code></pre>
 Start the development server:
-
+<pre><code>
+cd client
 npm start
-
+</code></pre>
 
 ## Built With
 
@@ -43,7 +44,7 @@ Please read [CONTRIBUTING.md](https://github.com/YOUR-USERNAME/ChatGPT-Clone/blo
 
 ## Authors
 
-- **YOUR NAME** - *Initial work* - [YOUR USERNAME](https://github.com/YOUR-USERNAME)
+- **João Bizzo** - (https://github.com/joaobizzo)
 
 ## License
 
