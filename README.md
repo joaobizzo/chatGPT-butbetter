@@ -1,4 +1,4 @@
-# ChatGPT Clone
+# ChatGPT Better Version
 
 A chat-based language model clone developed using React.js for the frontend and Node.js for the backend.
 
